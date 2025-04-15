@@ -10,7 +10,7 @@ export default function Dashboard(){
     const [ users, setUsers] = useState([]);
     const [balance, setBalance ] = useState<number>(0);
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/user/balanceInquiry" ,
+        axios.get(process.env.BACKEND_URL+"/api/v1/user/balance",
             {
                 headers: {
                     Authorization: localStorage.getItem("token")
@@ -26,7 +26,7 @@ export default function Dashboard(){
         })
     },[])
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter="+filter)
+        axios.get(process.env.BACKEND_URL+"/api/v1/user/bulk?filter="+filter)
         .then((response)=>{
             //@ts-ignore
             setUsers(response.data.users)

@@ -1,9 +1,11 @@
+    
 import { useState } from "react";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
 import Input from "../components/input";
 import { useNavigate } from "react-router-dom";
 import SubHeading from "../components/Subheading";
+
 import axios from "axios";
 import WarningButton from "../components/WarningButton";
 export  default function signup(){
@@ -23,7 +25,7 @@ export  default function signup(){
                 <Input onchange={(e: any)=>setEmail(e.target.value)} Label="Email" placeholder="Enter your email"/>
                 <Input onchange={(e: any)=>setPassword(e.target.value)} Label="Password" placeholder="Enter your password"/>
                 <Button label="signup" onClick={()=>{
-                    axios.post("http://localhost:3000/api/v1/user/signup",{
+                    axios.post(process.env.BACKEND_URL+"/api/v1/user/signup",{
                         firstName: firstName,
                         lastName: lastName,
                         email: email,
@@ -32,8 +34,6 @@ export  default function signup(){
                     navigate("/signin")
                 }} />
                 <WarningButton lable={"Already have an account?"} buttonText={"Signin"} to ={"/signin"}/>
-               
-                
             </div>
         </div>
         </div>

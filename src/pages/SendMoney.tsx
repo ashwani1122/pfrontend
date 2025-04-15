@@ -34,7 +34,7 @@ export default function SendMoney(){
             />
             </div>
             <Button  onClick={ async ()=>{
-            await axios.post("http://localhost:3000/api/v1/user/transferMoney",{
+            await axios.post( process.env.BACKEND_URL+"/api/v1/user/transferMoney",{
                     amount: amount,
                     to: id
                 },
