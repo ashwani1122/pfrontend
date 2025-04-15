@@ -3,7 +3,7 @@ import Heading from "../components/Heading";
 import { useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 export default function SendMoney(){
         const [searchParams] = useSearchParams();
         const [amount , setAmount] = useState();
@@ -34,7 +34,7 @@ export default function SendMoney(){
             />
             </div>
             <Button  onClick={ async ()=>{
-            await axios.post( process.env.BACKEND_URL+"/api/v1/user/transferMoney",{
+            await axios.post( VITE_API_URL+"/api/v1/user/transferMoney",{
                     amount: amount,
                     to: id
                 },

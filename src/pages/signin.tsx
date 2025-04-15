@@ -6,6 +6,7 @@ import Input from "../components/input";
 import SubHeading from "../components/Subheading";
 import WarningButton from "../components/WarningButton";
 import axios from "axios";
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 export  default function Signin(){
     const [ email, setEmail] = useState("");
     const [ password, setPassword] = useState("");
@@ -19,7 +20,7 @@ export  default function Signin(){
                 <Input onchange={(e: any)=>setEmail(e.target.value)} Label="Email" placeholder="Enter your email"/>
                 <Input  onchange={(e: any)=>setPassword(e.target.value)} Label="Password" placeholder="Enter your password"/>
                 <Button label="Sign In" onClick={async ()=>{
-                    const response  = await axios.post(process.env.BACKEND_URL+"/api/v1/user/signin",{
+                    const response  = await axios.post(VITE_API_URL+"/api/v1/user/signin",{
                         email: email,
                         password: password
                     });

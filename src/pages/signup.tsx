@@ -5,9 +5,9 @@ import Heading from "../components/Heading";
 import Input from "../components/input";
 import { useNavigate } from "react-router-dom";
 import SubHeading from "../components/Subheading";
-
 import axios from "axios";
 import WarningButton from "../components/WarningButton";
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 export  default function signup(){
     const navigate = useNavigate();
     const [ firstName, setFirstName] = useState("");
@@ -25,7 +25,7 @@ export  default function signup(){
                 <Input onchange={(e: any)=>setEmail(e.target.value)} Label="Email" placeholder="Enter your email"/>
                 <Input onchange={(e: any)=>setPassword(e.target.value)} Label="Password" placeholder="Enter your password"/>
                 <Button label="signup" onClick={()=>{
-                    axios.post(process.env.BACKEND_URL+"/api/v1/user/signup",{
+                    axios.post(VITE_API_URL+"/api/v1/user/signup",{
                         firstName: firstName,
                         lastName: lastName,
                         email: email,

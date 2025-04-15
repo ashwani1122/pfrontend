@@ -4,13 +4,13 @@ import Balance from "../components/Balance";
 import Input from "../components/input";
 import UserList from "../components/UserList";
 import axios from "axios";
-
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 export default function Dashboard(){
     const [ filter, setFilter] = useState("");
     const [ users, setUsers] = useState([]);
     const [balance, setBalance ] = useState<number>(0);
     useEffect(() => {
-        axios.get(process.env.BACKEND_URL+"/api/v1/user/balance",
+        axios.get(VITE_API_URL+"/api/v1/user/balance",
             {
                 headers: {
                     Authorization: localStorage.getItem("token")
@@ -26,7 +26,7 @@ export default function Dashboard(){
         })
     },[])
     useEffect(() => {
-        axios.get(process.env.BACKEND_URL+"/api/v1/user/bulk?filter="+filter)
+        axios.get(VITE_API_URL+"/api/v1/user/bulk?filter="+filter)
         .then((response)=>{
             //@ts-ignore
             setUsers(response.data.users)
